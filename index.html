@@ -1,84 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NANNY GO — забота о самом важном</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NANNY GO — найди няню под задачу</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#23334a;background:#fff8f1;line-height:1.6}
-header{padding:22px 7%;display:flex;justify-content:space-between;background:white;align-items:center}
-.logo{font-size:25px;font-weight:bold} .logo span{color:#ff806e}
-nav a{margin-left:20px;text-decoration:none;color:#23334a}
-.hero{padding:75px 7%;background:#dff2e9;display:flex;align-items:center;gap:40px}
-.hero div{flex:1}
-h1{font-size:clamp(38px,6vw,64px);line-height:1.1}
-h1 span{color:#f07160}
-.hero p{font-size:18px}
-.btn{display:inline-block;background:#ff806e;color:white;padding:14px 24px;border-radius:30px;text-decoration:none;font-weight:bold}
-.art{font-size:120px;text-align:center}
-section{padding:60px 7%}
-h2{font-size:34px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:25px}
-.card{background:white;padding:25px;border-radius:22px;box-shadow:0 5px 20px #23334a12}
-.emoji{font-size:35px}
-.people{background:#f6eee7}
-.person{display:flex;align-items:center;gap:15px}
-.avatar{font-size:42px;background:#dff2e9;border-radius:50%;padding:10px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.steps b{font-size:28px;color:#ff806e}
-.quote{background:#dff2e9;padding:30px;border-radius:24px;font-size:20px}
-details{background:white;padding:18px;margin:12px 0;border-radius:15px}
-footer{text-align:center;background:#23334a;color:white;padding:30px}
-@media(max-width:700px){nav{display:none}.hero{display:block}.art{font-size:80px}.cards,.steps{grid-template-columns:1fr}}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f7f5;color:#171717}
+.top{background:#111;color:white;padding:12px 6%;font-size:13px}
+.nav{padding:20px 6%;display:flex;align-items:center;justify-content:space-between;background:white}
+.logo{font-size:26px;font-weight:1000;letter-spacing:-1px}
+.logo i{color:#ff5c35;font-style:normal}
+nav a{text-decoration:none;color:#111;font-weight:700;margin-left:22px}
+.hero{padding:65px 6%;background:#ff5c35;color:white;display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:end}
+.hero h1{font-size:72px;line-height:.9;margin:0 0 20px;letter-spacing:-4px}
+.hero p{font-size:20px;max-width:620px}
+.go{background:#111;color:white;border:0;padding:17px 25px;border-radius:5px;font-weight:900;font-size:15px;cursor:pointer}
+.ticket{background:#ffe9df;color:#111;padding:28px;transform:rotate(3deg);box-shadow:15px 15px 0 #111}
+.ticket b{font-size:50px}
+.section{padding:70px 6%}
+.section h2{font-size:42px;letter-spacing:-2px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#111;border:2px solid #111}
+.tile{background:white;padding:28px;min-height:190px}
+.tile strong{font-size:24px}
+.price{font-size:35px;font-weight:900;margin:15px 0}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);border-top:3px solid #111}
+.time{padding:25px 12px;border-right:1px solid #aaa}
+.time span{font-size:30px;font-weight:900;color:#ff5c35}
+.profiles{display:flex;gap:18px;overflow:auto}
+.person{min-width:230px;background:#fff;border:1px solid #ddd;padding:20px}
+.avatar{height:150px;background:#dce9e7;display:flex;align-items:center;justify-content:center;font-size:65px;margin-bottom:15px}
+.review{background:#111;color:#fff;padding:40px;font-size:28px;max-width:900px}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.faq div{background:white;padding:20px;border-left:5px solid #ff5c35}
+.form{background:#ffe9df;padding:35px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form input,.form select{padding:15px;border:2px solid #111}
+.form button{padding:16px;background:#111;color:#fff;border:0;font-weight:900;cursor:pointer}
+footer{background:#111;color:#fff;padding:35px 6%}
+@media(max-width:800px){
+.hero{grid-template-columns:1fr}
+.hero h1{font-size:50px}
+.grid,.timeline,.faq,.form{grid-template-columns:1fr}
+.nav{align-items:flex-start}
+.nav nav{display:flex;flex-wrap:wrap;gap:8px}
+.nav nav a{margin:0}
+}
 </style>
 </head>
 <body>
-<header>
-<div class="logo">NANNY <span>GO</span></div>
-<nav><a href="#services">Услуги</a><a href="#team">Наши няни</a><a href="#steps">Как это работает</a><a href="#faq">Вопросы</a></nav>
+
+<div class="top">NANNY GO / помощь родителям без лишних звонков</div>
+
+<header class="nav">
+  <div class="logo">NANNY <i>GO</i></div>
+  <nav>
+    <a href="#match">Подбор</a>
+    <a href="#services">Услуги</a>
+    <a href="#people">Специалисты</a>
+    <a href="#steps">5 шагов</a>
+    <a href="#faq">FAQ</a>
+    <a href="#start">Старт</a>
+  </nav>
 </header>
-<div class="hero">
-<div>
-<p>♡ Забота, которой можно доверять</p>
-<h1>Найдите няню,<br><span>с которой спокойно</span></h1>
-<p>NANNY GO помогает родителям найти заботливого специалиста для ребёнка — на несколько часов или на каждый день.</p>
-<a class="btn" href="#team">Выбрать няню</a>
-</div>
-<div class="art">🧸</div>
-</div>
-<section id="services">
-<h2>Помощь для вашей семьи</h2>
-<p>Подберём формат заботы под ваш ритм жизни.</p>
-<div class="cards">
-<div class="card"><div class="emoji">🌼</div><h3>Няня на день</h3><p>Присмотр, игры, прогулки и забота, пока вы заняты.</p></div>
-<div class="card"><div class="emoji">🌙</div><h3>Вечерняя няня</h3><p>Помощь вечером, чтобы у родителей было время на себя.</p></div>
-<div class="card"><div class="emoji">📚</div><h3>Развитие и занятия</h3><p>Творчество, чтение и занятия с учётом возраста.</p></div>
-</div>
+
+<section class="hero">
+  <div>
+    <h1>НЯНЯ.<br>БЫСТРО.<br>ПО ДЕЛУ.</h1>
+    <p>Сервис подбора няни для разовой помощи и регулярных задач. Вы задаёте условия — мы помогаем найти подходящий вариант.</p>
+    <button class="go" onclick="location.href='#start'">Найти няню →</button>
+  </div>
+  <div class="ticket">
+    <b>01</b>
+    <h2>Сначала — задача</h2>
+    <p>На несколько часов? На каждый день? С ребёнком дома или на прогулке?</p>
+  </div>
 </section>
-<section class="people" id="team">
-<h2>Познакомьтесь с нашими нянями</h2>
-<div class="cards">
-<div class="card person"><div class="avatar">👩🏻</div><div><h3>Анна, 29 лет</h3><p>Опыт 5 лет · дошкольники</p></div></div>
-<div class="card person"><div class="avatar">👩🏽</div><div><h3>Мария, 34 года</h3><p>Опыт 8 лет · младенцы</p></div></div>
-<div class="card person"><div class="avatar">👩🏼</div><div><h3>Екатерина, 31 год</h3><p>Опыт 6 лет · развитие</p></div></div>
-</div>
+
+<section class="section" id="match">
+  <h2>Подбор начинается с задачи</h2>
+  <div class="grid">
+    <div class="tile"><strong>⏱ На пару часов</strong><p>Когда нужно освободить вечер, сходить по делам или просто сделать паузу.</p></div>
+    <div class="tile"><strong>📅 Регулярно</strong><p>Няня на определённые дни и часы по согласованному расписанию.</p></div>
+    <div class="tile"><strong>🎒 Сопровождение</strong><p>Садик, школа, кружки и другие привычные маршруты ребёнка.</p></div>
+  </div>
 </section>
-<section id="steps">
-<h2>Всего три простых шага</h2>
-<div class="steps">
-<div><b>01</b><h3>Расскажите о задаче</h3><p>Укажите возраст ребёнка и расписание.</p></div>
-<div><b>02</b><h3>Выберите специалиста</h3><p>Посмотрите анкеты и выберите няню.</p></div>
-<div><b>03</b><h3>Познакомьтесь</h3><p>Обсудите детали и договоритесь о встрече.</p></div>
-</div>
+
+<section class="section" id="services">
+  <h2>Что можно заказать</h2>
+  <div class="grid">
+    <div class="tile"><b>НЯНЯ НА ЧАС</b><div class="price">от 450 ₽/ч</div><p>Разовая помощь по вашему расписанию.</p></div>
+    <div class="tile"><b>РЕГУЛЯРНАЯ ПОМОЩЬ</b><div class="price">по договорённости</div><p>Подбор под постоянное расписание семьи.</p></div>
+    <div class="tile"><b>СОПРОВОЖДЕНИЕ</b><div class="price">индивидуально</div><p>Помощь по маршрутам ребёнка и организации дня.</p></div>
+  </div>
 </section>
-<section><div class="quote">«Самое важное для нас — чтобы родители чувствовали спокойствие, а дети были окружены вниманием и заботой».<p>Команда NANNY GO</p></div></section>
-<section id="faq">
-<h2>Частые вопросы</h2>
-<details><summary>Как выбрать няню?</summary><p>Ознакомьтесь с анкетами, опытом и специализацией.</p></details>
-<details><summary>Можно ли пригласить няню на несколько часов?</summary><p>Да, предусмотрены разовые и регулярные варианты помощи.</p></details>
-<details><summary>Как связаться с сервисом?</summary><p>Обсудите условия и способ связи после выбора специалиста.</p></details>
+
+<section class="section" id="people">
+  <h2>Специалисты</h2>
+  <div class="profiles">
+    <div class="person"><div class="avatar">👩🏻</div><b>София, 26</b><p>Игры · прогулки · дошкольники</p></div>
+    <div class="person"><div class="avatar">👩🏼</div><b>Ольга, 31</b><p>Школьники · уроки · сопровождение</p></div>
+    <div class="person"><div class="avatar">👩🏽</div><b>Ирина, 38</b><p>Малыши · режим · спокойный досуг</p></div>
+  </div>
 </section>
-<footer>© 2026 NANNY GO · Забота о самом важном</footer>
+
+<section class="section" id="steps">
+  <h2>Как это работает</h2>
+  <div class="timeline">
+    <div class="time"><span>01</span><p>Заявка</p></div>
+    <div class="time"><span>02</span><p>Уточняем задачу</p></div>
+    <div class="time"><span>03</span><p>Подбираем</p></div>
+    <div class="time"><span>04</span><p>Знакомим</p></div>
+    <div class="time"><span>05</span><p>Начинаете</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="review">
+    «Мне нужен был человек буквально на несколько часов. Понравилось, что я сразу увидела варианты и могла выбрать подходящий по опыту.»
+    <br><small>— отзыв пользователя</small>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <h2>Вопросы родителей</h2>
+  <div class="faq">
+    <div><b>Можно заказать няню один раз?</b><p>Да, сервис предусматривает разовые заявки.</p></div>
+    <div><b>Можно выбрать время?</b><p>Да, время указывается в заявке.</p></div>
+    <div><b>Можно учитывать возраст ребёнка?</b><p>Да, возраст и особенности задачи учитываются при подборе.</p></div>
+    <div><b>Как оставить заявку?</b><p>Заполните короткую форму ниже.</p></div>
+  </div>
+</section>
+
+<section class="section" id="start">
+  <h2>Запустить подбор</h2>
+  <form class="form" onsubmit="alert('Заявка отправлена! (демо-режим)'); return false;">
+    <input placeholder="Имя" required>
+    <input placeholder="Телефон" required>
+    <input placeholder="Возраст ребёнка">
+    <select>
+      <option>Формат помощи</option>
+      <option>На несколько часов</option>
+      <option>Регулярно</option>
+      <option>Сопровождение</option>
+    </select>
+    <button type="submit">ОТПРАВИТЬ ЗАЯВКУ</button>
+  </form>
+</section>
+
+<footer>NANNY GO · Учебный прототип сервиса нянь</footer>
+
 </body>
 </html>
